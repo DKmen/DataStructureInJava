@@ -187,6 +187,22 @@ public class A_LinkList {
         head=previous;
     }
 
+    //reverse link list by recursive method
+    private static Node callForReverse(Node head){
+
+        if(head==null || head.getNext()==null) return head;
+        Node newHead= callForReverse(head.getNext());
+
+        head.getNext().setNode(head);
+        head.setNode(null);
+
+        return newHead;
+    }
+
+    public void reverseRecursive(){
+        head= callForReverse(head);
+    }
+
     //print element of link list
     public void printLinkList(){
         Node temp=head;
@@ -218,6 +234,8 @@ class tested {
         LinkList.swap(55,1);
         LinkList.printLinkList();
         LinkList.reverse();
+        LinkList.printLinkList();
+        LinkList.reverseRecursive();
         LinkList.printLinkList();
     }
 }
