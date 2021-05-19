@@ -67,6 +67,59 @@ public class sortingFunction {
         }
     }
 
+    //mergeSort Algorithm for sorting
+    private void mergeArray(int[] array, int start, int end){
+        int mid=(start+end)/2;
+        int rightSideArraySize=mid-start+1;
+        int leftSideArraySize=end-mid;
+
+        int[] rightArray =new int[rightSideArraySize];
+        int[] leftArray =new int[leftSideArraySize];
+
+        for (int i=start;i<=end;i++){
+            if(i<=mid){
+                rightArray[i-start]=array[i];
+            }else {
+                leftArray[i-mid-1]=array[i];
+            }
+        }
+
+        int rightSideIndex=0;
+        int leftSideIndex=0;
+        int mainIndex=start;
+        while (rightSideIndex<rightArray.length && leftSideIndex<leftArray.length){
+            if(rightArray[rightSideIndex]<leftArray[leftSideIndex]){
+                array[mainIndex]=rightArray[rightSideIndex];
+                rightSideIndex++;
+            }else {
+                array[mainIndex]=leftArray[leftSideIndex];
+                leftSideIndex++;
+            }
+            mainIndex++;
+        }
+
+        while (rightSideIndex<rightArray.length){
+            array[mainIndex]=rightArray[rightSideIndex];
+            rightSideIndex++;
+            mainIndex++;
+        }
+
+        while (leftSideIndex<leftArray.length){
+            array[mainIndex]=leftArray[leftSideIndex];
+            leftSideIndex++;
+            mainIndex++;
+        }
+    }
+    public void mergeSort(int[] array, int start, int end){
+        if(start<end){
+            int mid=(start+end)/2;
+            mergeSort(array,start,mid);
+            mergeSort(array,mid+1,end);
+
+            mergeArray(array,start,end);
+        }
+    }
+
 }
 
 class tested{
@@ -80,6 +133,9 @@ class tested{
         for (int k : Array) System.out.print(k + "  ");
         System.out.println();
         F.insertionSort(Array);
+        for (int j : Array) System.out.print(j + "  ");
+        System.out.println();
+        F.mergeSort(Array,0,Array.length-1);
         for (int j : Array) System.out.print(j + "  ");
         System.out.println();
     }
