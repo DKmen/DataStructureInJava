@@ -1,4 +1,4 @@
-package LinearDataStructure.list;
+package DataStructure.LinearDataStructure.list;
 
 //Points of LinkList
 
