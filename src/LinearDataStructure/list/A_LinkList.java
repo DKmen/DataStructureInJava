@@ -37,6 +37,14 @@ public class A_LinkList {
 
     private Node head=null;
 
+    //setAndGet Head
+    public Node getHead(){
+        return head;
+    }
+    private void setHead(Node head){
+        this.head=head;
+    }
+
     //Add data front of link list
     public void addDataFront(int data){
         Node newNode=new Node(data);
@@ -198,10 +206,77 @@ public class A_LinkList {
 
         return newHead;
     }
-
     public void reverseRecursive(){
         head= callForReverse(head);
     }
+
+
+
+    //mergeSort for link list
+    private static Node mergeTwoSortedListRecursiveMethod(Node ListA,Node ListB){
+        if(ListA==null) return ListB;
+        else if(ListB==null) return ListA;
+        else if(ListA.getData()>ListB.getData()){
+            ListB.setNode(mergeTwoSortedListRecursiveMethod(ListA,ListB.getNext()));
+            return ListB;
+        }else {
+            ListA.setNode(mergeTwoSortedListRecursiveMethod(ListA.getNext(),ListB));
+            return ListA;
+        }
+    }
+    private static Node mergeTwoSortedListIterativeMethod(Node ListA,Node ListB){
+        Node result=new Node(-1);
+        Node iterative=result;
+        while (true){
+            if(ListA==null){
+                iterative.setNode(ListB);
+                break;
+            }else if(ListB==null){
+                iterative.setNode(ListA);
+                break;
+            }else if(ListA.getData()>ListB.getData()){
+                iterative.setNode(new Node(ListB.getData()));
+                iterative=iterative.getNext();
+                ListB=ListB.getNext();
+            }else {
+                iterative.setNode(new Node(ListA.getData()));
+                iterative=iterative.getNext();
+                ListA=ListA.getNext();
+            }
+        }
+        return result.getNext();
+    }
+    private Node middleNode(Node head){
+        Node fastJumpNode=head;
+        Node slowJumpNode=head;
+
+        if(head==null) return head;
+
+        while (fastJumpNode.getNext()!=null && fastJumpNode.getNext().getNext()!=null){
+            slowJumpNode=slowJumpNode.getNext();
+            fastJumpNode=fastJumpNode.getNext().getNext();
+        }
+        return slowJumpNode;
+    }
+    private Node mergeSort(Node head){
+        Node left=head;
+        if(head==null||head.getNext()==null) return head;
+
+        Node middleNode=middleNode(head);
+        Node right=middleNode.getNext();
+        middleNode.setNode(null);
+
+        left=mergeSort(left);
+        right=mergeSort(right);
+
+        return mergeTwoSortedListRecursiveMethod(left,right);
+    }
+    public void sort(){
+        setHead(mergeSort(head));
+    }
+
+
+
 
     //print element of link list
     public void printLinkList(){
@@ -218,24 +293,35 @@ public class A_LinkList {
 
 class tested {
     public static void main(String[] arr){
-        A_LinkList LinkList=new A_LinkList();
-        LinkList.addDataFront(1);
-        LinkList.addDataFront(2);
-        LinkList.addDataFront(3);
-        LinkList.printLinkList();
-        LinkList.addDataEnd(4);
-        LinkList.addDataAfter(1,55);
-        LinkList.printLinkList();
-        LinkList.deleteData(3);
-        LinkList.printLinkList();
-        LinkList.deleteDataAt(1);
-        LinkList.printLinkList();
-        System.out.println(LinkList.length());
-        LinkList.swap(55,1);
-        LinkList.printLinkList();
-        LinkList.reverse();
-        LinkList.printLinkList();
-        LinkList.reverseRecursive();
-        LinkList.printLinkList();
+//        A_LinkList LinkList=new A_LinkList();
+//        LinkList.addDataFront(1);
+//        LinkList.addDataFront(2);
+//        LinkList.addDataFront(3);
+//        LinkList.printLinkList();
+//        LinkList.addDataEnd(4);
+//        LinkList.addDataAfter(1,55);
+//        LinkList.printLinkList();
+//        LinkList.deleteData(3);
+//        LinkList.printLinkList();
+//        LinkList.deleteDataAt(1);
+//        LinkList.printLinkList();
+//        System.out.println(LinkList.length());
+//        LinkList.swap(55,1);
+//        LinkList.printLinkList();
+//        LinkList.reverse();
+//        LinkList.printLinkList();
+//        LinkList.reverseRecursive();
+//        LinkList.printLinkList();
+        A_LinkList ListA=new A_LinkList();
+        ListA.addDataEnd(10);
+        ListA.addDataEnd(1);
+        ListA.addDataEnd(3);
+        ListA.addDataEnd(2);
+        ListA.addDataEnd(40);
+        ListA.addDataEnd(20);
+        ListA.addDataEnd(11);
+        ListA.printLinkList();
+        ListA.sort();
+        ListA.printLinkList();
     }
 }

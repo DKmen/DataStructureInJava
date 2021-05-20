@@ -31,7 +31,7 @@ public class sortingFunction {
 
 
     //Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in wrong order.
-    public void swapData(int[] array,int indexA,int indexB){
+    private static void swapData(int[] array,int indexA,int indexB){
         int temp=array[indexA];
         array[indexA]=array[indexB];
         array[indexB]=temp;
@@ -120,22 +120,50 @@ public class sortingFunction {
         }
     }
 
+
+    //Quick sort Algorithm for sorting
+    private static int partialIndexSet(int[] array, int start, int end){
+        int swapIndex=start;
+        for (int i=start;i<=end-1;i++){
+            if(array[i]<array[end]){
+                swapData(array,swapIndex,i);
+                swapIndex++;
+            }
+        }
+        swapData(array,swapIndex,end);
+        return swapIndex;
+    }
+    public void quickSort(int[] array,int start,int end){
+        if(start<end){
+            int partitionIndex= partialIndexSet(array,start,end);
+
+            quickSort(array,start,partitionIndex-1);
+            quickSort(array,partitionIndex+1,end);
+        }
+    }
+
+
+
+
 }
 
 class tested{
     public static void main(String[] arr){
        sortingFunction F=new sortingFunction();
         int[] Array ={10,20,30,23,43,23,56,54,32,53,60,1,23,6,3,54};
-        F.selectionSort(Array);
-        for (int value : Array) System.out.print(value + "  ");
-        System.out.println();
-        F.bubbleSort(Array);
-        for (int k : Array) System.out.print(k + "  ");
-        System.out.println();
-        F.insertionSort(Array);
-        for (int j : Array) System.out.print(j + "  ");
-        System.out.println();
-        F.mergeSort(Array,0,Array.length-1);
+//        F.selectionSort(Array);
+//        for (int value : Array) System.out.print(value + "  ");
+//        System.out.println();
+//        F.bubbleSort(Array);
+//        for (int k : Array) System.out.print(k + "  ");
+//        System.out.println();
+//        F.insertionSort(Array);
+//        for (int j : Array) System.out.print(j + "  ");
+//        System.out.println();
+//        F.mergeSort(Array,0,Array.length-1);
+//        for (int j : Array) System.out.print(j + "  ");
+//        System.out.println();
+        F.quickSort(Array,0,Array.length-1);
         for (int j : Array) System.out.print(j + "  ");
         System.out.println();
     }
