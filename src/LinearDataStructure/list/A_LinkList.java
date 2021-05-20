@@ -276,7 +276,101 @@ public class A_LinkList {
     }
 
 
+    //reverse link list by group size
+    private static Node reverseListUsingGroupSizeFunction(int groupSize,Node head){
+        Node previous=null;
+        Node current=head;
+        Node next=null;
 
+        if(head==null || head.getNext()==null) return head;
+
+        int countIndex=0;
+
+        while (current!=null && countIndex<groupSize){
+            next=current.getNext();
+            current.setNode(previous);
+            previous=current;
+            current=next;
+            countIndex++;
+        }
+
+        if(next!=null) head.setNode(reverseListUsingGroupSizeFunction(groupSize,next));
+        return previous;
+    }
+    public void reverseListGroup(int GroupSize){
+        head=reverseListUsingGroupSizeFunction(GroupSize,head);
+    }
+
+    //Detection and Remove loop in link list
+    public Boolean detectedLoopInList(){
+        Node slowJumpNode=head;
+        Node fastJumpNode=head;
+
+        while (fastJumpNode!=null && fastJumpNode.getNext()!=null){
+            fastJumpNode=fastJumpNode.getNext().getNext();
+            slowJumpNode=slowJumpNode.getNext();
+
+            if(fastJumpNode==slowJumpNode) return true;
+        }
+        return false;
+    }
+    public void makeLoopInList(int position){
+        int countIndex=1;
+        Node iterative=head;
+        Node loopNode=null;
+
+        while (iterative.getNext()!=null){
+            if(countIndex==position){
+                loopNode=iterative;
+            }
+            countIndex++;
+            iterative=iterative.getNext();
+        }
+        iterative.setNode(loopNode);
+    }
+    public void deleteLoopInList(){
+        if(detectedLoopInList()){
+            Node slowJumpNode=head;
+            Node fastJumpNode=head;
+
+            while (fastJumpNode!=null && fastJumpNode.getNext()!=null){
+                fastJumpNode=fastJumpNode.getNext().getNext();
+                slowJumpNode=slowJumpNode.getNext();
+
+                if(fastJumpNode==slowJumpNode) break;
+            }
+
+            fastJumpNode=head;
+
+            while (fastJumpNode.getNext()!=slowJumpNode.getNext()){
+                fastJumpNode=fastJumpNode.getNext();
+                slowJumpNode=slowJumpNode.getNext();
+            }
+            slowJumpNode.setNode(null);
+        }
+    }
+
+    //rotated a link list
+    public void rotatedLinkList(int kthNodeIndex){
+        int countIndex=1;
+        Node iterative=head;
+        Node kthNode=head;
+
+        while (iterative.getNext()!=null){
+            if(countIndex==kthNodeIndex){
+                kthNode=iterative;
+            }
+            countIndex++;
+            iterative=iterative.getNext();
+        }
+
+        if(kthNode.getNext()!=null){
+            Node newHead=kthNode.getNext();
+            kthNode.setNode(null);
+            iterative.setNode(head);
+            head=newHead;
+        }
+    }
 
     //print element of link list
     public void printLinkList(){
@@ -322,6 +416,14 @@ class tested {
         ListA.addDataEnd(11);
         ListA.printLinkList();
         ListA.sort();
+        ListA.printLinkList();
+        ListA.reverseListGroup(3);
+        ListA.printLinkList();
+        ListA.makeLoopInList(2);
+        System.out.println(ListA.detectedLoopInList());
+        ListA.deleteLoopInList();
+        ListA.printLinkList();
+        ListA.rotatedLinkList(4);
         ListA.printLinkList();
     }
 }
