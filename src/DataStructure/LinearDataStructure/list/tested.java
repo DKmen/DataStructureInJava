@@ -41,22 +41,41 @@ class tested {
 //        ListA.rotatedLinkList(4);
 //        ListA.printLinkList();
 
-        B_circularLinkList Ac=new B_circularLinkList();
-        B_circularLinkList Bc=new B_circularLinkList();
-        B_circularLinkList Cc=new B_circularLinkList();
+//        B_circularLinkList Ac=new B_circularLinkList();
+//        B_circularLinkList Bc=new B_circularLinkList();
+//        B_circularLinkList Cc=new B_circularLinkList();
+//
+//        Ac.insertDataAtEnd(1);
+//        Ac.insertDataAtEnd(2);
+//        Ac.insertDataAtEnd(3);
+//        Ac.insertDataAtEnd(5);
+//        Ac.insertDataAtEnd(7);
+//        Ac.insertDataAtEnd(11);
+//        Ac.insertDataAtEnd(20);
+//        Ac.insertDataAtEnd(21);
+//        Ac.printList();
+//
+//        Ac.splitCircularList(Bc,Cc);
+//        Bc.printList();
+//        Cc.printList();
 
-        Ac.insertDataAtEnd(1);
-        Ac.insertDataAtEnd(2);
-        Ac.insertDataAtEnd(3);
-        Ac.insertDataAtEnd(5);
-        Ac.insertDataAtEnd(7);
-        Ac.insertDataAtEnd(11);
-        Ac.insertDataAtEnd(20);
-        Ac.insertDataAtEnd(21);
-        Ac.printList();
-
-        Ac.splitCircularList(Bc,Cc);
-        Bc.printList();
-        Cc.printList();
+        C_DoublyLinkList Ad=new C_DoublyLinkList();
+        Ad.insertDataAtEnd(1);
+        Ad.insertDataAtEnd(20);
+        Ad.insertDataAtEnd(4);
+        Ad.insertDataAtEnd(50);
+        Ad.insertDataAtEnd(6);
+        Ad.insertDataAtEnd(7);
+        Ad.printList();
+        Ad.insertDataAtPosition(3,1);
+        Ad.printList();
+        Ad.deleteNode(1);
+        Ad.printList();
+        Ad.deleteNode(6);
+        Ad.printList();
+//        Ad.reverseList();
+//        Ad.printList();
+        Ad.sort();
+        Ad.printList();
     }
 }
