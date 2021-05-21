@@ -163,7 +163,51 @@ public class C_DoublyLinkList {
         quickSort(head,lastNode());
     }
 
-    //
+    //merge sort on doubly link list
+    private DNode getMiddleNode(DNode start){
+        DNode slowJumpNode=start;
+        DNode fastJumpNode=start;
+
+        while (fastJumpNode.getNext()!=null && fastJumpNode.getNext().getNext()!=null){
+            slowJumpNode=slowJumpNode.getNext();
+            fastJumpNode=fastJumpNode.getNext().getNext();
+        }
+        DNode ret=slowJumpNode.getNext();
+        slowJumpNode.setNextNode(null);
+        return ret;
+    }
+    private DNode mergeList(DNode ListA,DNode ListB){
+        DNode result=new DNode(-1);
+        DNode iterate=result;
+        while (ListA!=null && ListB!=null){
+            if(ListA.getData()<ListB.getData()){
+                iterate.setNextNode(new DNode(ListA.getData()));
+                ListA=ListA.getNext();
+            }else {
+                iterate.setNextNode(new DNode(ListB.getData()));
+                ListB=ListB.getNext();
+            }
+            iterate=iterate.getNext();
+        }
+
+        if(ListA!=null) iterate.setNextNode(ListA);
+        if(ListB!=null) iterate.setNextNode(ListB);
+        return result.getNext();
+    }
+    private DNode mergeSort(DNode head){
+
+        if(head==null || head.getNext()==null) return head;
+
+        DNode midNode = getMiddleNode(head);
+
+        DNode left=mergeSort(head);
+        DNode right=mergeSort(midNode);
+
+        return mergeList(left,right);
+    }
+    public void mergeSortList(){
+        head=mergeSort(head);
+    }
 
 
     //print list

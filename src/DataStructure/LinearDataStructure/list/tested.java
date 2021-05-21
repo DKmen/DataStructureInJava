@@ -75,7 +75,8 @@ class tested {
         Ad.printList();
 //        Ad.reverseList();
 //        Ad.printList();
-        Ad.sort();
+//        Ad.sort();
+        Ad.mergeSortList();
         Ad.printList();
     }
 }
