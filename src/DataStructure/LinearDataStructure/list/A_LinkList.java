@@ -12,26 +12,6 @@ Each node in a list consists of at least two parts:
 2) Pointer (Or Reference) to the next node
 
 */
-class Node{
-    private final int data;
-    private Node next=null;
-
-    public Node(int data){
-        this.data=data;
-    }
-
-    public void setNode(Node next){
-        this.next=next;
-    }
-
-    public Node getNext(){
-        return next;
-    }
-
-    public int getData(){
-        return data;
-    }
-}
 
 public class A_LinkList {
 
@@ -385,45 +365,3 @@ public class A_LinkList {
 }
 
 
-class tested {
-    public static void main(String[] arr){
-//        A_LinkList LinkList=new A_LinkList();
-//        LinkList.addDataFront(1);
-//        LinkList.addDataFront(2);
-//        LinkList.addDataFront(3);
-//        LinkList.printLinkList();
-//        LinkList.addDataEnd(4);
-//        LinkList.addDataAfter(1,55);
-//        LinkList.printLinkList();
-//        LinkList.deleteData(3);
-//        LinkList.printLinkList();
-//        LinkList.deleteDataAt(1);
-//        LinkList.printLinkList();
-//        System.out.println(LinkList.length());
-//        LinkList.swap(55,1);
-//        LinkList.printLinkList();
-//        LinkList.reverse();
-//        LinkList.printLinkList();
-//        LinkList.reverseRecursive();
-//        LinkList.printLinkList();
-        A_LinkList ListA=new A_LinkList();
-        ListA.addDataEnd(10);
-        ListA.addDataEnd(1);
-        ListA.addDataEnd(3);
-        ListA.addDataEnd(2);
-        ListA.addDataEnd(40);
-        ListA.addDataEnd(20);
-        ListA.addDataEnd(11);
-        ListA.printLinkList();
-        ListA.sort();
-        ListA.printLinkList();
-        ListA.reverseListGroup(3);
-        ListA.printLinkList();
-        ListA.makeLoopInList(2);
-        System.out.println(ListA.detectedLoopInList());
-        ListA.deleteLoopInList();
-        ListA.printLinkList();
-        ListA.rotatedLinkList(4);
-        ListA.printLinkList();
-    }
-}
