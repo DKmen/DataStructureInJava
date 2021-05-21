@@ -352,6 +352,13 @@ public class A_LinkList {
         }
     }
 
+    //get last element
+    public int endElement(){
+        Node iterative=head;
+        while (iterative.getNext()!=null) iterative=iterative.getNext();
+        return iterative.getData();
+    }
+
     //print element of link list
     public void printLinkList(){
         Node temp=head;

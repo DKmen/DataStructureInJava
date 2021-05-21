@@ -110,9 +110,9 @@ public class C_DoublyLinkList {
 
     //swap node data in double link list
     public void swap(DNode nodeA,DNode nodeB){
-        int tepm=nodeA.getData();
+        int team=nodeA.getData();
         nodeA.setData(nodeB.getData());
-        nodeB.setData(tepm);
+        nodeB.setData(team);
     }
     public void swapNode(DNode nodeA,DNode nodeB){
         DNode tempNext=nodeA.getNext();
