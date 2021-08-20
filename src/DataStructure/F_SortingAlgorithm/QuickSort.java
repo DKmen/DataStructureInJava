@@ -33,7 +33,7 @@ public class QuickSort {
     }
 
     public static void main(String[] arr){
-        int[] elementArray={6,2,5,3,8,10,4,7,9,1};
+        int[] elementArray={50,23,9,18,61,32};
         quickSort(elementArray,0,elementArray.length-1);
         for(int element : elementArray) System.out.print(element+" ");
         System.out.println();
